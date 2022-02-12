@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM debian:buster
 
 # arch="arm64", arch="" (no-arm)
 ARG arch=arm64
@@ -15,10 +15,10 @@ RUN echo "~~~~~ Building for arch=${arch}" && \
         bison \
         curl \
         flex \
-        g++-8-arm-linux-gnueabihf \
+        # g++-8-arm-linux-gnueabihf \
         g++-aarch64-linux-gnu \
         gcc-aarch64-linux-gnu \
-        gcc-arm-linux-gnueabihf \
+        # gcc-arm-linux-gnueabihf \
         git \
         gperf \
         libgtkglext1-dev \
@@ -71,7 +71,11 @@ RUN chmod +x /app/docker/*.sh && \
     && \
     cd /app/chromium_git/chromium/src && \
     ninja ${ninja_debug_args} cefsimple chrome_sandbox && \
-    ninja ${ninja_release_args} cefsimple chrome_sandbox
+    ninja ${ninja_release_args} cefsimple chrome_sandbox \
+    && \
+    cd /app/automate/chromium_git/chromium/src/cef/tools \
+    ./make_distrib.sh --ninja-build ${arch_build}
+
 
 WORKDIR /app
 

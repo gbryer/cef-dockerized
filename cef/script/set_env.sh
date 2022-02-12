@@ -8,7 +8,8 @@ if [ "${arch}" = "arm64" ] ; then
     export CEF_INSTALL_SYSROOT="arm64"
     export install_build_deps_sh_arch="--arm"
     export no_nacl=""
-    export extra_automate_args="--arm64-build"
+    export arch_build="--arm64-build"
+    export extra_automate_args="--arm64-build --url=https://github.com/gbryer/cef --branch 4844"
     export ninja_debug_args="-C out/Debug_GN_arm64"
     export ninja_release_args="-C out/Release_GN_arm64"
 else
@@ -20,7 +21,8 @@ else
     export no_nacl="--no-nacl"
     export ninja_debug_args="-C out/Debug_GN_x64"
     export ninja_release_args="-C out/Release_GN_x64"
-    export extra_automate_args="--x64-build"
+    export arch_build="--x64-build"
+    export extra_automate_args="--x64-build --url=https://github.com/gbryer/cef --branch 4844"
 
     export CHROME_DEVEL_SANDBOX=/usr/local/sbin/chrome-devel-sandbox
 fi
