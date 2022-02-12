@@ -4,7 +4,7 @@ export PATH=/app/depot_tools:$PATH
 
 if [ "${arch}" = "arm64" ] ; then
     export GYP_DEFINES="target_arch=arm64"
-    export GN_DEFINES="is_official_build=true use_sysroot=true use_allocator=none symbol_level=1 enable_nacl=false use_cups=false"
+    export GN_DEFINES="is_official_build=true use_sysroot=true use_allocator=none symbol_level=1 enable_nacl=false use_cups=false proprietary_codecs=true ffmpeg_branding=Chrome"
     export CEF_INSTALL_SYSROOT="arm64"
     export install_build_deps_sh_arch="--arm"
     export no_nacl=""
@@ -15,7 +15,7 @@ if [ "${arch}" = "arm64" ] ; then
 else
     export CEF_USE_GN=1
     export GYP_DEFINES="disable_nacl=1 use_sysroot=1 buildtype=Official use_allocator=none"
-    export GN_DEFINES="is_official_build=true use_sysroot=true use_allocator=none symbol_level=1 enable_nacl=false use_cups=false"
+    export GN_DEFINES="is_official_build=true use_sysroot=true use_allocator=none symbol_level=1 enable_nacl=false use_cups=false proprietary_codecs=true ffmpeg_branding=Chrome"
 
     export install_build_deps_sh_arch="--no-arm"
     export no_nacl="--no-nacl"
